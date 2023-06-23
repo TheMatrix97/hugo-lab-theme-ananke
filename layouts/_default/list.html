@@ -1,15 +1,30 @@
 {{ define "main" }}
+
+<style>
+  ol {
+    font-size : 20pt;
+  }
+  li a {
+    color: black;
+    text-decoration: none;
+    border-bottom: 2px dotted lightskyblue;
+  }
+
+
+</style>
+
   <article class="pa3 pa4-ns nested-copy-line-height">
-    <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy {{ $.Param "text_color" | default "mid-gray" }}">
-      {{- .Content -}}
-    </section>
-    <section class="flex-ns flex-wrap justify-around mt5">
-      {{ range .Paginator.Pages }}
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          {{ .Render "summary" }}
-        </div>
+    <section class="">
+      <ol>
+      {{ range sort site.RegularPages "File.Path" }}
+        <li class="">
+          {{ $heading := index (split .Content "</h1>") 0 }}
+            <a href="{{ .RelPermalink }}">
+              {{ $heading | plainify }}
+            </a>
+        </li>  
       {{ end }}
+    </ol>
     </section>
-    {{- template "_internal/pagination.html" . -}}
   </article>
 {{ end }}
