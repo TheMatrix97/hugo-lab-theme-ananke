@@ -8,6 +8,21 @@
       {{ end }}
     </a>
     <div class="flex-l items-center">
+
+      <script>
+        function smile() {
+          navigator.clipboard.writeText(
+            [...document.querySelectorAll('code[data-lang]:not(.language-optional)')]
+            .filter(e=>e.innerText.indexOf('█') === -1)
+            .map(e=>e.innerText)
+            .join('sleep 1 # --------------------------------------\n')
+            .replaceAll('\n\n','\n')
+          );
+        }
+      </script>
+      <button type="button" onclick="smile();">:)</button>
+        
+
       {{ partial "i18nlist.html" . }}
       {{ if .Site.Menus.main }}
         <ul class="{{ cond (eq $.Site.Language.LanguageDirection "rtl") "pr0 ml3" "pl0 mr3" }}">

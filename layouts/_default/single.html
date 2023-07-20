@@ -62,8 +62,7 @@
 
     <aside class="w-30-l mt6-l">
       {{- partial "menu-contextual.html" . -}}
-    </aside>
-
+    </aside>   
   </article>
   <style>
     ul {
@@ -86,6 +85,13 @@
 
       return result;
     }    
+
+
+    [...document.querySelectorAll('code')].forEach( e => {
+      e.addEventListener('click', function(evt) {
+        navigator.clipboard.writeText(this.innerText.replaceAll('\n\n','\n'));
+      })
+    });
 
     [...document.querySelectorAll('img')].forEach( e => {
       if (e.getAttribute('src').startsWith('http') === false) {
