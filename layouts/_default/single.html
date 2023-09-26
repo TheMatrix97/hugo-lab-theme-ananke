@@ -60,8 +60,30 @@
       </div>
     </div>
 
-    <aside class="w-30-l mt6-l">
+    <style>
+      aside h3, aside ol li, aside ol li a {
+        color : lightsteelblue;
+        text-decoration: none;
+      }
+    </style>
+
+    <aside class="w-30-l mt4-l">
       {{- partial "menu-contextual.html" . -}}
+      <h3>
+        Quick access
+      </h3>
+      <ol>
+        {{ range sort site.RegularPages "File.Path" }}
+          <li class="">
+            {{ $heading := index (split .Content "</h1>") 0 }}
+              <a href="{{ .RelPermalink }}">
+                {{ $heading | plainify }}
+              </a>
+          </li>  
+        {{ end }}
+      </ol>
+
+      
     </aside>   
   </article>
   <style>
