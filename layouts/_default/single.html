@@ -94,8 +94,6 @@
   </style>
 
   <script>
-    let secondsFromLoad = 0;
-    setInterval(() => secondsFromLoad++, 1000);
 
     function isElementInViewport (el) {
       let rect = el.getBoundingClientRect();
@@ -125,20 +123,11 @@
 
       const cmdShow = document.createElement('button');
       cmdShow.type = 'button';
-      cmdShow.disabled = true;
+      cmdShow.disabled = false;
       cmdShow.innerHTML = 'Show solution';
       cmdShow.addEventListener('click', evt => {
         e.setAttribute('open', '');
       });
-      let secondsFromLoad = 0;
-      setInterval(() => {
-        if (isElementInViewport(e)) {
-          secondsFromLoad++;
-          if (secondsFromLoad >= 60*2) {
-            cmdShow.disabled = false;   
-          }
-        }
-      }, 1000);
 
       e.querySelector('summary').appendChild(cmdShow);
       e.addEventListener('click', evt => { evt.preventDefault(); });
